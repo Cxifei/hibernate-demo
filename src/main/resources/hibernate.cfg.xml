@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-demo</property>
+    <!--强行配置编码乱码问题-->
+    <!--<property name="connection.useUnicode">true</property>-->
+    <!--<property name="connection.characterEncoding">UTF-8</property>-->
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+
+    <!-- DB schema will be updated if needed -->
+    <!--update：当数据库中的表不存在的时候，hibernate启动后会自动生成表结构，
+           当表存在，如果结果一致，则不做处理
+           当表存在，结构不一致，会对表的结构进行修改，但不会改变原有的结构，只加不减
+        create：无论表是否存在，都会重新创建生成新的表，会造成数据的丢失
+        create-drop：无论表是否存在，hibernate启动后，都会重新创建生成新的表，并且hibernate关闭后，表结构会被删除，会造成数据的丢失
+        validate：不会创建表结构，不会修改表结构，验证是否和原有数据库中的字段是否一致，如果不一致，则报异常
+    -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <!--方言-->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <!--显示SQL语句-->
+    <property name="hibernate.show_sql">true</property>
+    <!--格式化SQL语句-->
+    <property name="hibernate.format_sql">true</property>
+
+    <!--ORM映射关系-->
+    <!--<mapping resource="hibernate/User.hbm.xml"/>-->
+    <!--<mapping package="com.cxf.entity"/>-->
+    <mapping class="com.cxf.entity.User"/>
+    <mapping class="com.cxf.entity.Student"/>
+    <mapping class="com.cxf.entity.Teacher"/>
+  </session-factory>
+</hibernate-configuration>
